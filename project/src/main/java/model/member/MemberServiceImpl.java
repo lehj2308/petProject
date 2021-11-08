@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class MemberServiceImpl implements MemberService{
 
 	@Autowired
-	private MemberDAO memberDAO;
+	private MybatisMemberDAO memberDAO;
 	
 	@Override
 	public void insertMember(MemberVO vo) {
@@ -23,6 +23,14 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		memberDAO.updateMember(vo);
 	}
+	
+
+	@Override
+	public void updateImgMember(MemberVO vo) {
+		// TODO Auto-generated method stub
+		memberDAO.updateImgMember(vo);
+		
+	}
 
 	@Override
 	public void deleteMember(MemberVO vo) {
@@ -33,11 +41,9 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVO getMember(MemberVO vo) {
 		// TODO Auto-generated method stub
-		try {
+
 			return memberDAO.getMember(vo);
-		}catch (Exception e) {
-			return null;
-		}
+
 	}
 
 	@Override
@@ -45,6 +51,5 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return memberDAO.getMemberList(vo);
 	}
-	
 	
 }

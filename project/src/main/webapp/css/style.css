@@ -3681,3 +3681,12 @@ ol {
 	margin-bottom: 14px;
 	resize: none;
 }
+
+.cart__product__item img{
+	height: 150px;
+	width: 150px;
+} 
+.box{
+	background-color: rgba( 255, 255, 255, 0.8 );
+	opacity : 0.5;
+}

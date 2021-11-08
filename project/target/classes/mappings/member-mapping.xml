@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao">
+
+	<insert id="insertMember">
+   <![CDATA[
+      INSERT INTO member(mId,mName,mPw,mPh,mAddr1,mAddr2,mAddr3,mEmail,mImg) VALUES(#{mId},#{mName},#{mPw},#{mPh},#{mAddr1},#{mAddr2},#{mAddr3},#{mEmail},#{mImg})
+      ]]>
+	</insert>
+
+	<update id="updateMember">
+   <![CDATA[
+      UPDATE member SET mName = #{mName}, mPw = #{mPw}, mPh = #{mPh}, mAddr1 = #{mAddr1}, mAddr2 = #{mAddr2}, mAddr3 = #{mAddr3}, mEmail = #{mEmail} WHERE mId = #{mId}
+      ]]>
+	</update>
+
+	<update id="updateImgMember">
+   <![CDATA[
+      UPDATE member SET mImg = #{mImg} WHERE mId = #{mId}
+      ]]>
+	</update>
+
+	<delete id="deleteMember">
+   <![CDATA[
+      DELETE FROM member WHERE mId = #{mId}
+      ]]>
+	</delete>
+
+	<select id="getMember" resultType="member">
+   <![CDATA[
+      SELECT * FROM member WHERE mId = #{mId}
+      ]]>
+	</select>
+
+	<select id="getMemberList" resultType="member">
+   <![CDATA[
+      SELECT * FROM member
+      ]]>
+	</select>
+
+</mapper>

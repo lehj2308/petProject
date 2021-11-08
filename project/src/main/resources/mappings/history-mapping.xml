@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao">
+
+	<insert id="insertHistory">
+   <![CDATA[
+      INSERT INTO history(hNum, mId, hName, hAddr1, hAddr2, hAddr3, hPh, pNum, pName, pImg1, pPrice, hAmount) VALUES((SELECT NVL(MAX(hNum), 0)+1 FROM history), #{mId}, #{hName}, #{hAddr1}, #{hAddr2}, #{hAddr3}, #{hPh}, #{pNum}, #{pName}, #{pImg1}, #{pPrice}, #{hAmount})
+      ]]>
+	</insert>
+
+	<update id="updateHistory">
+   <![CDATA[
+      UPDATE history SET hAddr1 = #{hAddr1}, hAddr2 = #{hAddr2}, hAddr3 = #{hAddr3} WHERE hNum = #{hNum}
+      ]]>
+	</update>
+
+	<update id="updateStockProduct">
+   <![CDATA[
+      UPDATE product SET pStock = pStock - #{hAmount} WHERE pNum = #{pNum}
+      ]]>
+	</update>
+
+	<delete id="deleteHistory">
+   <![CDATA[
+		DELETE FROM history WHERE hNum = #{hNum}
+      ]]>
+	</delete>
+
+	<select id="getHistory" resultType="history">
+   <![CDATA[
+      SELECT * FROM history WHERE hNum = #{hNum}
+      ]]>
+	</select>
+
+	<select id="getMyHistoryList" resultType="history">
+   <![CDATA[
+      SELECT * FROM history WHERE mId = #{mId}
+      ]]>
+	</select>
+
+	<select id="getHistoryList" resultType="history">
+   <![CDATA[
+      SELECT * FROM history
+      ]]>
+	</select>
+
+</mapper>

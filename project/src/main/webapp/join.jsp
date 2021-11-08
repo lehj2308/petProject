@@ -43,14 +43,14 @@
 	<div class="offcanvas-menu-wrapper">
 		<div class="offcanvas__close">+</div>
 		<ul class="offcanvas__widget">
-			<li><span class="icon_search search-switch"></span></li>
-			<li><a href="#"><span class="icon_heart_alt"></span>
-					<div class="tip">2</div> </a></li>
-			<li><a href="#"><span class="icon_bag_alt"></span>
-					<div class="tip">2</div> </a></li>
+			<c:if test="${!empty user}">
+				<li><a href="getMyHistoryList.do"><span class="icon_clock_alt"></span></a></li>
+				<li><a href="basket.jsp"><span class="icon_bag_alt"></span>
+						<div class="tip">${basketCnt}</div> </a></li>
+			</c:if>
 		</ul>
 		<div class="offcanvas__logo">
-			<a href="index.jsp"><img src="img/logo.png" alt=""></a>
+			<a href="./index.jsp"><img src="img/logo.png" alt=""></a>
 		</div>
 		<div id="mobile-menu-wrap"></div>
 		<div class="offcanvas__auth">
@@ -65,25 +65,14 @@
 			<div class="row">
 				<div class="col-xl-3 col-lg-2">
 					<div class="header__logo">
-						<a href="index.jsp"><img src="img/logo.png" alt=""></a>
+						<a href="index.jsp"><img src="img/logo.png" alt="로고사진"></a>
 					</div>
 				</div>
 				<div class="col-xl-6 col-lg-7">
 					<nav class="header__menu">
 						<ul>
 							<li><a href="index.jsp">Home</a></li>
-							<li><a href="#">Women’s</a></li>
-							<li><a href="#">Men’s</a></li>
 							<li><a href="shop.do">Shop</a></li>
-							<li><a href="#">Pages</a>
-								<ul class="dropdown">
-									<li><a href="./product-details.html">Product Details</a></li>
-									<li><a href="./shop-cart.html">Shop Cart</a></li>
-									<li><a href="./checkout.html">Checkout</a></li>
-									<li><a href="./blog-details.html">Blog Details</a></li>
-								</ul></li>
-							<li><a href="./blog.html">Blog</a></li>
-							<li><a href="./contact.html">Contact</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -93,11 +82,11 @@
 							<mytag:user name="${user.mName}" />
 						</div>
 						<ul class="header__right__widget">
-							<li><span class="icon_search search-switch"></span></li>
-							<li><a href="#"><span class="icon_heart_alt"></span>
-									<div class="tip">2</div> </a></li>
-							<li><a href="#"><span class="icon_bag_alt"></span>
-									<div class="tip">2</div> </a></li>
+							<c:if test="${!empty user}">
+								<li><a href="getMyHistoryList.do"><span class="icon_clock_alt"></span></a></li>
+								<li><a href="basket.jsp"><span class="icon_bag_alt"></span>
+										<div class="tip">${basketCnt}</div> </a></li>
+							</c:if>
 						</ul>
 					</div>
 				</div>
@@ -108,21 +97,6 @@
 		</div>
 	</header>
 	<!-- Header Section End -->
-
-	<!-- Breadcrumb Begin -->
-	<div class="breadcrumb-option">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="breadcrumb__links">
-						<a href="index.jsp"><i class="fa fa-home"></i> Home</a> <span>Shopping
-							cart</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Breadcrumb End -->
 
 	<!-- Checkout Section Begin -->
 	<section class="checkout spad">
@@ -147,9 +121,9 @@
 								<div class="col-lg-3 col-md-3 col-sm-3">
 									<div class="checkout__form__input">
 										<p>프로필 사진</p>
-										<input type="file" id="mImg" class="img" name="mImgFile" required>
+										<input type="file" id="mImg" class="img" name="mImgFile">
 										<label for="mImg"> 
-											<img src="img/default.png" class="profilImg" alt="유저사진">
+											<img src="\img\default.png" class="profilImg" alt="유저사진">
 										</label>
 									</div>
 								</div>
@@ -185,13 +159,6 @@
 										<input type="email" name="mEmail" required>
 									</div>
 								</div>
-								<div class="col-lg-12">
-									<div class="checkout__form__checkbox">
-										<label for="acc"> 약관에 동의합니다. <input
-											type="checkbox" id="acc" required> <span class="checkmark"></span>
-										</label>
-									</div>
-								</div>
 								<button type="submit" class="site-btn">Sign-Up</button>
 							</div>
 						</div>
@@ -219,9 +186,9 @@
 								<div class="col-lg-3 col-md-3 col-sm-3">
 									<div class="checkout__form__input">
 										<p>프로필 사진</p>
-										<input type="file" id="mImg" class="img" name="mImgFile" value="img/${user.mImg}" >
+										<input type="file" id="mImg" class="img" name="mImgFile" >
 										<label for="mImg"> 
-											<img src="img/${user.mImg}" class="profilImg" alt="유저사진">
+											<img src="${user.mImg}" class="profilImg" alt="유저사진">
 										</label>
 									</div>
 								</div>
@@ -264,122 +231,9 @@
 	</section>
 	<!-- Checkout Section End -->
 
-	<!-- Instagram Begin -->
-	<div class="instagram">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-lg-2 col-md-4 col-sm-4 p-0">
-					<div class="instagram__item set-bg"
-						data-setbg="img/instagram/insta-1.jpg">
-						<div class="instagram__text">
-							<i class="fa fa-instagram"></i> <a href="#">@ ashion_shop</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-4 col-sm-4 p-0">
-					<div class="instagram__item set-bg"
-						data-setbg="img/instagram/insta-2.jpg">
-						<div class="instagram__text">
-							<i class="fa fa-instagram"></i> <a href="#">@ ashion_shop</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-4 col-sm-4 p-0">
-					<div class="instagram__item set-bg"
-						data-setbg="img/instagram/insta-3.jpg">
-						<div class="instagram__text">
-							<i class="fa fa-instagram"></i> <a href="#">@ ashion_shop</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-4 col-sm-4 p-0">
-					<div class="instagram__item set-bg"
-						data-setbg="img/instagram/insta-4.jpg">
-						<div class="instagram__text">
-							<i class="fa fa-instagram"></i> <a href="#">@ ashion_shop</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-4 col-sm-4 p-0">
-					<div class="instagram__item set-bg"
-						data-setbg="img/instagram/insta-5.jpg">
-						<div class="instagram__text">
-							<i class="fa fa-instagram"></i> <a href="#">@ ashion_shop</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-4 col-sm-4 p-0">
-					<div class="instagram__item set-bg"
-						data-setbg="img/instagram/insta-6.jpg">
-						<div class="instagram__text">
-							<i class="fa fa-instagram"></i> <a href="#">@ ashion_shop</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Instagram End -->
-
 	<!-- Footer Section Begin -->
 	<footer class="footer">
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-4 col-md-6 col-sm-7">
-					<div class="footer__about">
-						<div class="footer__logo">
-							<a href="index.jsp"><img src="img/logo.png" alt=""></a>
-						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-							sed do eiusmod tempor incididunt cilisis.</p>
-						<div class="footer__payment">
-							<a href="#"><img src="img/payment/payment-1.png" alt=""></a>
-							<a href="#"><img src="img/payment/payment-2.png" alt=""></a>
-							<a href="#"><img src="img/payment/payment-3.png" alt=""></a>
-							<a href="#"><img src="img/payment/payment-4.png" alt=""></a>
-							<a href="#"><img src="img/payment/payment-5.png" alt=""></a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-3 col-sm-5">
-					<div class="footer__widget">
-						<h6>Quick links</h6>
-						<ul>
-							<li><a href="#">About</a></li>
-							<li><a href="#">Blogs</a></li>
-							<li><a href="#">Contact</a></li>
-							<li><a href="#">FAQ</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-3 col-sm-4">
-					<div class="footer__widget">
-						<h6>Account</h6>
-						<ul>
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Orders Tracking</a></li>
-							<li><a href="#">Checkout</a></li>
-							<li><a href="#">Wishlist</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-8 col-sm-8">
-					<div class="footer__newslatter">
-						<h6>NEWSLETTER</h6>
-						<form action="#">
-							<input type="text" placeholder="Email">
-							<button type="submit" class="site-btn">Subscribe</button>
-						</form>
-						<div class="footer__social">
-							<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-								class="fa fa-twitter"></i></a> <a href="#"><i
-								class="fa fa-youtube-play"></i></a> <a href="#"><i
-								class="fa fa-instagram"></i></a> <a href="#"><i
-								class="fa fa-pinterest"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
 			<div class="row">
 				<div class="col-lg-12">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -398,17 +252,6 @@
 		</div>
 	</footer>
 	<!-- Footer Section End -->
-
-	<!-- Search Begin -->
-	<div class="search-model">
-		<div class="h-100 d-flex align-items-center justify-content-center">
-			<div class="search-close-switch">+</div>
-			<form class="search-model-form">
-				<input type="text" id="search-input" placeholder="Search here.....">
-			</form>
-		</div>
-	</div>
-	<!-- Search End -->
 
 	<!-- Js Plugins -->
 	<script src="js/jquery-3.3.1.min.js"></script>

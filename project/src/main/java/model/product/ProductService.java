@@ -4,14 +4,18 @@ import java.util.List;
 
 public interface ProductService {
 
-	public void insertProduct(ProductVO vo);
+	void insertProduct(ProductVO vo);
 	
-	public void updateProduct(ProductVO vo);
+	void updateProduct(ProductVO vo);
 	
-	public void deleteProduct(ProductVO vo);
+	void updateImg1Product(ProductVO vo);
 	
-	public ProductVO getProduct(ProductVO vo);
+	void updateImg2Product(ProductVO vo);
 	
-	public List<ProductVO> getProductList(ProductVO vo);
+	void deleteProduct(ProductVO vo);
+	
+	ProductVO getProduct(ProductVO vo);
+	
+	List<ProductVO> getProductList(ProductVO vo);
 	
 }

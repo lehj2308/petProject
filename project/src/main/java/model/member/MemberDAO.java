@@ -1,4 +1,4 @@
-package model.member;
+/*package model.member;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,42 +31,51 @@ class MemberRowMapper implements RowMapper<MemberVO> {
 @Repository("memberDAO")
 public class MemberDAO {
 
-	private String insertSQL="INSERT INTO member(mId,mName,mPw,mPh,mAddr1,mAddr2,mAddr3,mEmail,mImg) VALUES(?,?,?,?,?,?,?,?,?)";
-	private String updateSQL="UPDATE member SET mName = ?, mPw = ?, mPh = ?, mAddr1 = ?, mAddr2 = ?, mAddr3 = ?, mEmail = ? WHERE mId = ?";
-	private String deleteSQL="DELETE FROM member WHERE mId = ?";
-	private String getMemberSQL="SELECT * FROM member WHERE mId = ?";
-	private String getMemberListSQL="SELECT * FROM member";
-	
+	private String insertSQL = "INSERT INTO member(mId,mName,mPw,mPh,mAddr1,mAddr2,mAddr3,mEmail,mImg) VALUES(?,?,?,?,?,?,?,?,?)";
+	private String updateSQL = "UPDATE member SET mName = ?, mPw = ?, mPh = ?, mAddr1 = ?, mAddr2 = ?, mAddr3 = ?, mEmail = ? WHERE mId = ?";
+	private String updateImgSQL = "UPDATE member SET mImg = ? WHERE mId = ?";
+	private String deleteSQL = "DELETE FROM member WHERE mId = ?";
+	private String getMemberSQL = "SELECT * FROM member WHERE mId = ?";
+	private String getMemberListSQL = "SELECT * FROM member";
+
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
+
 	// 회원가입
 	public void insertMember(MemberVO vo) {
-		Object[] args = { vo.getmId(), vo.getmName(), vo.getmPw(), vo.getmPh(), vo.getmAddr1(), vo.getmAddr2(), vo.getmAddr3(), vo.getmEmail(), vo.getmImg()};
+		Object[] args = { vo.getmId(), vo.getmName(), vo.getmPw(), vo.getmPh(), vo.getmAddr1(), vo.getmAddr2(),
+				vo.getmAddr3(), vo.getmEmail(), vo.getmImg() };
 		jdbcTemplate.update(insertSQL, args);
 	}
-	
+
 	// 회원 정보 수정
 	public void updateMember(MemberVO vo) {
-		Object[] args = {vo.getmName(), vo.getmPw(), vo.getmPh(), vo.getmAddr1(), vo.getmAddr2(), vo.getmAddr3(), vo.getmEmail(), vo.getmId()};
+		Object[] args = { vo.getmName(), vo.getmPw(), vo.getmPh(), vo.getmAddr1(), vo.getmAddr2(), vo.getmAddr3(),
+				vo.getmEmail(), vo.getmId() };
 		jdbcTemplate.update(updateSQL, args);
 	}
-	
+
+	// 회원 사진 수정
+	public void updateImgMember(MemberVO vo) {
+		Object[] args = { vo.getmImg(), vo.getmId() };
+		jdbcTemplate.update(updateImgSQL, args);
+	}
+
 	// 회원 탈퇴
 	public void deleteMember(MemberVO vo) {
 		jdbcTemplate.update(deleteSQL, vo.getmId());
 	}
-	
+
 	// 로그인
 	public MemberVO getMember(MemberVO vo) {
-		Object[] args = { vo.getmId()};
+		Object[] args = { vo.getmId() };
 		MemberVO data = jdbcTemplate.queryForObject(getMemberSQL, args, new MemberRowMapper());
 		return data;
 	}
-	
+
 	public List<MemberVO> getMemberList(MemberVO vo) {
 		return jdbcTemplate.query(getMemberListSQL, new MemberRowMapper());
 	}
-	
-	
+
 }
+*/

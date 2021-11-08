@@ -22,12 +22,28 @@ public class ProductController {
 	// 상품 등록
 	@RequestMapping("/insertProduct.do")
 	public String insertProduct(ProductVO vo) throws IllegalStateException, IOException {
-		MultipartFile img1File=vo.getpImg1File();
-		String file1Name="mImg1"+vo.getpNum()+img1File.getOriginalFilename();
-		System.out.println("파일이름: "+file1Name);
-		img1File.transferTo(new File("F:\\KIM_0622\\workspace\\petProject\\project\\src\\main\\webapp\\img\\"+file1Name));
 		
-		vo.setpImg1(file1Name);
+		
+		MultipartFile imgFile=vo.getpImg1File();
+		
+		String fileName = "\\img\\product\\Img1."+ imgFile.getOriginalFilename();
+		System.out.println("1파일이름: "+fileName);
+		imgFile.transferTo(new File("F:\\KIM_0622\\workspace\\petProject\\project\\src\\main\\webapp"+fileName));
+		vo.setpImg1(fileName);
+		
+		System.out.println(vo.getpImg2File());
+		imgFile=vo.getpImg2File();
+		if(!imgFile.getOriginalFilename().equals("")) {
+			fileName = "\\img\\product\\Img2."+ imgFile.getOriginalFilename();
+			System.out.println("2파일이름: "+fileName);
+			imgFile.transferTo(new File("F:\\KIM_0622\\workspace\\petProject\\project\\src\\main\\webapp"+fileName));
+			vo.setpImg2(fileName);
+		}
+		else {
+			fileName = "\\img\\upload.png";
+			vo.setpImg2(fileName);
+		}
+		
 		productService.insertProduct(vo);
 		return "redirect:shop.do";
 	}
@@ -35,11 +51,25 @@ public class ProductController {
 	// 상품 정보 수정
 	@RequestMapping("/updateProduct.do")
 	public String updateProduct(ProductVO vo) throws IllegalStateException, IOException {
-		MultipartFile img1File=vo.getpImg1File();
-		String file1Name="mImg1"+vo.getpNum()+img1File.getOriginalFilename();
-		System.out.println("파일이름: "+file1Name);
-		img1File.transferTo(new File("F:\\KIM_0622\\workspace\\petProject\\project\\src\\main\\webapp\\img\\"+file1Name));
-		vo.setpImg1(file1Name);
+
+		MultipartFile imgFile=vo.getpImg1File();
+		String fileName = null;
+		if(!imgFile.getOriginalFilename().equals("")) {
+			fileName = "\\img\\product\\Img1."+ imgFile.getOriginalFilename();
+			System.out.println("1파일이름: "+fileName);
+			imgFile.transferTo(new File("F:\\KIM_0622\\workspace\\petProject\\project\\src\\main\\webapp"+fileName));
+			vo.setpImg1(fileName);
+			productService.updateImg1Product(vo);
+		}
+		imgFile=vo.getpImg2File();
+		if(!imgFile.getOriginalFilename().equals("")) {
+			fileName = "\\img\\product\\Img2."+ imgFile.getOriginalFilename();
+			System.out.println("2파일이름: "+fileName);
+			imgFile.transferTo(new File("F:\\KIM_0622\\workspace\\petProject\\project\\src\\main\\webapp"+fileName));
+			vo.setpImg2(fileName);
+			productService.updateImg2Product(vo);
+		}
+		
 		
 		productService.updateProduct(vo);
 		return "getProduct.do";
@@ -71,8 +101,10 @@ public class ProductController {
 	// 상품 리스트
 	@RequestMapping("/shop.do")
 	public String getProductList(ProductVO vo, Model model) {
+		System.out.println(vo);
 		List<ProductVO> productList = productService.getProductList(vo);
 		model.addAttribute("productList", productList);
+		System.out.println(productList);
 		return "shop.jsp";
 	}
 }

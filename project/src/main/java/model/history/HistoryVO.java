@@ -1,15 +1,24 @@
 package model.history;
 
 import java.sql.Date;
+import java.util.List;
 
 public class HistoryVO {
 	private int hNum;
 	private String mId;
+	private String hName;
+	private String hAddr1;
+	private String hAddr2;
+	private String hAddr3;
+	private String hPh;
 	private int pNum;
 	private String pName;
-	private int hPrice;
+	private String pImg1;
+	private int pPrice;
 	private int hAmount;
 	private Date hDate;
+	private List<Integer> hAmontList; 
+	
 	public int gethNum() {
 		return hNum;
 	}
@@ -21,6 +30,36 @@ public class HistoryVO {
 	}
 	public void setmId(String mId) {
 		this.mId = mId;
+	}
+	public String gethName() {
+		return hName;
+	}
+	public void sethName(String hName) {
+		this.hName = hName;
+	}
+	public String gethAddr1() {
+		return hAddr1;
+	}
+	public void sethAddr1(String hAddr1) {
+		this.hAddr1 = hAddr1;
+	}
+	public String gethAddr2() {
+		return hAddr2;
+	}
+	public void sethAddr2(String hAddr2) {
+		this.hAddr2 = hAddr2;
+	}
+	public String gethAddr3() {
+		return hAddr3;
+	}
+	public void sethAddr3(String hAddr3) {
+		this.hAddr3 = hAddr3;
+	}
+	public String gethPh() {
+		return hPh;
+	}
+	public void sethPh(String hPh) {
+		this.hPh = hPh;
 	}
 	public int getpNum() {
 		return pNum;
@@ -34,11 +73,17 @@ public class HistoryVO {
 	public void setpName(String pName) {
 		this.pName = pName;
 	}
-	public int gethPrice() {
-		return hPrice;
+	public String getpImg1() {
+		return pImg1;
 	}
-	public void sethPrice(int hPrice) {
-		this.hPrice = hPrice;
+	public void setpImg1(String pImg1) {
+		this.pImg1 = pImg1;
+	}
+	public int getpPrice() {
+		return pPrice;
+	}
+	public void setpPrice(int pPrice) {
+		this.pPrice = pPrice;
 	}
 	public int gethAmount() {
 		return hAmount;
@@ -52,11 +97,17 @@ public class HistoryVO {
 	public void sethDate(Date hDate) {
 		this.hDate = hDate;
 	}
+	public List<Integer> gethAmontList() {
+		return hAmontList;
+	}
+	public void sethAmontList(List<Integer> hAmontList) {
+		this.hAmontList = hAmontList;
+	}
 	@Override
 	public String toString() {
-		return "HistoryVO [hNum=" + hNum + ", mId=" + mId + ", pNum=" + pNum + ", pName=" + pName + ", hPrice=" + hPrice
-				+ ", hAmount=" + hAmount + ", hDate=" + hDate + "]";
+		return "HistoryVO [hNum=" + hNum + ", mId=" + mId + ", hName=" + hName + ", hAddr1=" + hAddr1 + ", hAddr2="
+				+ hAddr2 + ", hAddr3=" + hAddr3 + ", hPh=" + hPh + ", pNum=" + pNum + ", pName=" + pName + ", pImg1="
+				+ pImg1 + ", pPrice=" + pPrice + ", hAmount=" + hAmount + ", hDate=" + hDate + "]";
 	}
-	
 	
 }

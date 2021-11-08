@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class ProductServiceImpl implements ProductService{
 
 	@Autowired
-	private ProductDAO productDAO;
+	private MybatisProductDAO productDAO;
 	
 	@Override
 	public void insertProduct(ProductVO vo) {
@@ -21,6 +21,18 @@ public class ProductServiceImpl implements ProductService{
 	public void updateProduct(ProductVO vo) {
 		// TODO Auto-generated method stub
 		productDAO.updateProduct(vo);
+	}
+	
+	@Override
+	public void updateImg1Product(ProductVO vo) {
+		// TODO Auto-generated method stub
+		productDAO.updateImg1Product(vo);
+	}
+
+	@Override
+	public void updateImg2Product(ProductVO vo) {
+		// TODO Auto-generated method stub
+		productDAO.updateImg2Product(vo);
 	}
 
 	@Override

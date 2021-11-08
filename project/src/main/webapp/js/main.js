@@ -184,12 +184,12 @@ Created: Colorib
     max: maxPrice,
     values: [minPrice, maxPrice],
     slide: function (event, ui) {
-        minamount.val('$' + ui.values[0]);
-        maxamount.val('$' + ui.values[1]);
+        minamount.val(ui.values[0]);
+        maxamount.val(ui.values[1]);
         }
     });
-    minamount.val('$' + rangeSlider.slider("values", 0));
-    maxamount.val('$' + rangeSlider.slider("values", 1));
+    minamount.val(rangeSlider.slider("values", 0));
+    maxamount.val(rangeSlider.slider("values", 1));
 
     /*------------------
 		Single Product
@@ -215,14 +215,16 @@ Created: Colorib
 			var newVal = parseFloat(oldValue) + 1;
 		} else {
 			// Don't allow decrementing below zero
-			if (oldValue > 0) {
+			if (oldValue > 1) {
 				var newVal = parseFloat(oldValue) - 1;
 			} else {
-				newVal = 0;
+				newVal = 1;
 			}
 		}
 		$button.parent().find('input').val(newVal);
     });
+	
+	
     
     /*-------------------
 		Radio Btn
@@ -230,6 +232,16 @@ Created: Colorib
     $(".size__btn label").on('click', function () {
         $(".size__btn label").removeClass('active');
         $(this).addClass('active');
+    });
+    
+    
+    $('.box').mouseover(function(e){
+    	e.preventDefault();
+    	$(this).animate({opacity:"1"}, 100);
+    });
+    $('.box').mouseleave(function(e){
+    	e.preventDefault();
+    	$(this).animate({opacity:"0.5"}, 100);
     });
 
 })(jQuery);

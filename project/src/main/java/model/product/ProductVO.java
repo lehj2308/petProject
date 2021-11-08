@@ -20,12 +20,13 @@ public class ProductVO {
 	private String pCtgr;
 	private MultipartFile pImg1File;
 	private MultipartFile pImg2File;
-	private MultipartFile pImg3File;
 	private String pImg1;
 	private String pImg2;
-	private String pImg3;
 	private Date pDate;
-	private String mImg;
+	private int lowPrice;
+	private int highPrice;
+	private String sort;
+	
 	
 	public int getpNum() {
 		return pNum;
@@ -111,12 +112,6 @@ public class ProductVO {
 	public void setpImg2File(MultipartFile pImg2File) {
 		this.pImg2File = pImg2File;
 	}
-	public MultipartFile getpImg3File() {
-		return pImg3File;
-	}
-	public void setpImg3File(MultipartFile pImg3File) {
-		this.pImg3File = pImg3File;
-	}
 	public String getpImg1() {
 		return pImg1;
 	}
@@ -129,31 +124,41 @@ public class ProductVO {
 	public void setpImg2(String pImg2) {
 		this.pImg2 = pImg2;
 	}
-	public String getpImg3() {
-		return pImg3;
-	}
-	public void setpImg3(String pImg3) {
-		this.pImg3 = pImg3;
-	}
 	public Date getpDate() {
 		return pDate;
 	}
 	public void setpDate(Date pDate) {
 		this.pDate = pDate;
 	}
-	public String getmImg() {
-		return mImg;
+
+	public int getLowPrice() {
+		return lowPrice;
 	}
-	public void setmImg(String mImg) {
-		this.mImg = mImg;
+	public void setLowPrice(int lowPrice) {
+		this.lowPrice = lowPrice;
+	}
+	public int getHighPrice() {
+		return highPrice;
+	}
+	public void setHighPrice(int highPrice) {
+		this.highPrice = highPrice;
+	}
+	
+	public String getSort() {
+		return sort;
+	}
+	public void setSort(String sort) {
+		this.sort = sort;
 	}
 	@Override
 	public String toString() {
 		return "ProductVO [pNum=" + pNum + ", mId=" + mId + ", pName=" + pName + ", pBrand=" + pBrand + ", pTitle="
 				+ pTitle + ", pContent=" + pContent + ", pPrice=" + pPrice + ", pStock=" + pStock + ", pTotal=" + pTotal
-				+ ", pRating=" + pRating + ", pReview=" + pReview + ", pCtgr=" + pCtgr + ", pImg1=" + pImg1 + ", pImg2="
-				+ pImg2 + ", pImg3=" + pImg3 + ", pDate=" + pDate + ", mImg=" + mImg + "]";
+				+ ", pRating=" + pRating + ", pReview=" + pReview + ", pCtgr=" + pCtgr + ", pImg1File=" + pImg1File
+				+ ", pImg2File=" + pImg2File + ", pImg1=" + pImg1 + ", pImg2=" + pImg2 + ", pDate=" + pDate
+				+ ", lowPrice=" + lowPrice + ", highPrice=" + highPrice + ", sort=" + sort + "]";
 	}
+
 
 	
 }

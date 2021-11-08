@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao">
+
+	<insert id="insertProduct">
+   <![CDATA[
+      INSERT INTO product(pNum, mId, pName, pBrand, pTitle, pContent, pPrice, pStock, pCtgr, pImg1, pImg2) VALUES((SELECT NVL(MAX(pNum), 0)+1 FROM product), #{mId}, #{pName}, #{pBrand}, #{pTitle}, #{pContent}, #{pPrice}, #{pStock}, #{pCtgr}, #{pImg1}, #{pImg2})
+      ]]>
+	</insert>
+
+	<update id="updateProduct">
+   <![CDATA[
+      UPDATE product SET pName = #{pName}, pBrand = #{pBrand}, pTitle = #{pTitle}, pContent = #{pContent}, pPrice = #{pPrice}, pStock = #{pStock}, pCtgr = #{pCtgr} WHERE pNum = #{pNum}
+      ]]>
+	</update>
+
+	<update id="updateImg1Product">
+   <![CDATA[
+      UPDATE product SET pImg1 = #{pImg1} WHERE pNum = #{pNum}
+      ]]>
+	</update>
+
+	<update id="updateImg2Product">
+   <![CDATA[
+      UPDATE product SET pImg2 = #{pImg2} WHERE pNum = #{pNum}
+      ]]>
+	</update>
+
+	<delete id="deleteProduct">
+   <![CDATA[
+      DELETE FROM product WHERE pNum = #{pNum}
+      ]]>
+	</delete>
+
+	<select id="getProduct" resultType="product">
+   <![CDATA[
+      SELECT * FROM product WHERE pNum = #{pNum}
+      ]]>
+	</select>
+
+	<select id="getProductList" resultType="product">
+		SELECT * FROM product where 1=1
+		<!-- 검색 -->
+		<if test="pName != null">AND pName LIKE '%'||#{pName}||'%'</if>
+		<!-- 카테고리 -->
+		<if test="pCtgr != null and pCtgr != 'none'">AND pCtgr = #{pCtgr}</if>
+		<!-- 가격 -->
+		<if test="highPrice != 0"><![CDATA[ AND pPrice >= #{lowPrice}*10000 AND pPrice <= #{highPrice}*10000 ]]></if>
+		<!-- 정렬방법 -->
+		<if test="sort == 'pPrice'">ORDER BY pPrice DESC</if>
+		<if test="sort == 'pPriceLow'">ORDER BY pPrice ASC</if>
+		<if test="sort == null or sort == 'pDate'">ORDER BY pDate DESC</if>
+	</select>
+
+</mapper>

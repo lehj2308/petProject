@@ -43,14 +43,14 @@
 	<div class="offcanvas-menu-wrapper">
 		<div class="offcanvas__close">+</div>
 		<ul class="offcanvas__widget">
-			<li><span class="icon_search search-switch"></span></li>
-			<li><a href="#"><span class="icon_heart_alt"></span>
-					<div class="tip">2</div> </a></li>
-			<li><a href="#"><span class="icon_bag_alt"></span>
-					<div class="tip">2</div> </a></li>
+			<c:if test="${!empty user}">
+				<li><a href="getMyHistoryList.do"><span class="icon_clock_alt"></span></a></li>
+				<li><a href="basket.jsp"><span class="icon_bag_alt"></span>
+						<div class="tip">${basketCnt}</div> </a></li>
+			</c:if>
 		</ul>
 		<div class="offcanvas__logo">
-			<a href="index.jsp"><img src="img/logo.png" alt=""></a>
+			<a href="./index.jsp"><img src="img/logo.png" alt=""></a>
 		</div>
 		<div id="mobile-menu-wrap"></div>
 		<div class="offcanvas__auth">
@@ -65,25 +65,14 @@
 			<div class="row">
 				<div class="col-xl-3 col-lg-2">
 					<div class="header__logo">
-						<a href="index.jsp"><img src="img/logo.png" alt=""></a>
+						<a href="index.jsp"><img src="img/logo.png" alt="로고사진"></a>
 					</div>
 				</div>
 				<div class="col-xl-6 col-lg-7">
 					<nav class="header__menu">
 						<ul>
 							<li><a href="index.jsp">Home</a></li>
-							<li><a href="#">Women’s</a></li>
-							<li><a href="#">Men’s</a></li>
 							<li class="active"><a href="shop.do">Shop</a></li>
-							<li><a href="#">Pages</a>
-								<ul class="dropdown">
-									<li><a href="./product-details.html">Product Details</a></li>
-									<li><a href="./shop-cart.html">Shop Cart</a></li>
-									<li><a href="./checkout.html">Checkout</a></li>
-									<li><a href="./blog-details.html">Blog Details</a></li>
-								</ul></li>
-							<li><a href="./blog.html">Blog</a></li>
-							<li><a href="./contact.html">Contact</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -93,11 +82,11 @@
 							<mytag:user name="${user.mName}" />
 						</div>
 						<ul class="header__right__widget">
-							<li><span class="icon_search search-switch"></span></li>
-							<li><a href="#"><span class="icon_heart_alt"></span>
-									<div class="tip">2</div> </a></li>
-							<li><a href="#"><span class="icon_bag_alt"></span>
-									<div class="tip">2</div> </a></li>
+							<c:if test="${!empty user}">
+								<li><a href="getMyHistoryList.do"><span class="icon_clock_alt"></span></a></li>
+								<li><a href="basket.jsp"><span class="icon_bag_alt"></span>
+										<div class="tip">${basketCnt}</div> </a></li>
+							</c:if>
 						</ul>
 					</div>
 				</div>
@@ -115,7 +104,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="breadcrumb__links">
-						<a href="index.jsp"><i class="fa fa-home"></i> Home</a> <span>Shop</span>
+						<a href="index.jsp"><i class="fa fa-home"></i> HOME </a> <span> SHOP </span>
 					</div>
 				</div>
 			</div>
@@ -127,175 +116,78 @@
 	<section class="shop spad">
 		<div class="container">
 			<div class="row">
+                <div class="col-lg-12">
+                    <h6 class="coupon__link">정렬: ${param.sort} / 검색어: ${param.pName} / 카테고리: ${param.pCtgr} / 가격:${param.lowPrice}만원 ~ ${param.highPrice}만원</h6>
+                </div>
+            </div>
+			<div class="row">
 				<div class="col-lg-3 col-md-3">
-					<div class="shop__sidebar">
-						<div class="sidebar__categories">
-							<button type="button" class="site-btn" onclick="location.href='productForm.jsp'">상품 등록</button>
-							<div class="section-title">
-								<h4>Categories</h4>
+					<form action="shop.do" method="post">
+						<div class="shop__sidebar">
+							<div class="sidebar__sizes">
+								<div class="section-title">
+									<h4>제품명</h4>
+									<input type="text" name="pName" value="">
+								</div>
 							</div>
-							<div class="categories__accordion">
-								<div class="accordion" id="accordionExample">
-									<div class="card">
-										<div class="card-heading active">
-											<a data-toggle="collapse" data-target="#collapseOne">Women</a>
-										</div>
-										<div id="collapseOne" class="collapse show"
-											data-parent="#accordionExample">
-											<div class="card-body">
-												<ul>
-													<li><a href="#">Coats</a></li>
-													<li><a href="#">Jackets</a></li>
-													<li><a href="#">Dresses</a></li>
-													<li><a href="#">Shirts</a></li>
-													<li><a href="#">T-shirts</a></li>
-													<li><a href="#">Jeans</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="card">
-										<div class="card-heading">
-											<a data-toggle="collapse" data-target="#collapseTwo">Men</a>
-										</div>
-										<div id="collapseTwo" class="collapse"
-											data-parent="#accordionExample">
-											<div class="card-body">
-												<ul>
-													<li><a href="#">Coats</a></li>
-													<li><a href="#">Jackets</a></li>
-													<li><a href="#">Dresses</a></li>
-													<li><a href="#">Shirts</a></li>
-													<li><a href="#">T-shirts</a></li>
-													<li><a href="#">Jeans</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="card">
-										<div class="card-heading">
-											<a data-toggle="collapse" data-target="#collapseThree">Kids</a>
-										</div>
-										<div id="collapseThree" class="collapse"
-											data-parent="#accordionExample">
-											<div class="card-body">
-												<ul>
-													<li><a href="#">Coats</a></li>
-													<li><a href="#">Jackets</a></li>
-													<li><a href="#">Dresses</a></li>
-													<li><a href="#">Shirts</a></li>
-													<li><a href="#">T-shirts</a></li>
-													<li><a href="#">Jeans</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="card">
-										<div class="card-heading">
-											<a data-toggle="collapse" data-target="#collapseFour">Accessories</a>
-										</div>
-										<div id="collapseFour" class="collapse"
-											data-parent="#accordionExample">
-											<div class="card-body">
-												<ul>
-													<li><a href="#">Coats</a></li>
-													<li><a href="#">Jackets</a></li>
-													<li><a href="#">Dresses</a></li>
-													<li><a href="#">Shirts</a></li>
-													<li><a href="#">T-shirts</a></li>
-													<li><a href="#">Jeans</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="card">
-										<div class="card-heading">
-											<a data-toggle="collapse" data-target="#collapseFive">Cosmetic</a>
-										</div>
-										<div id="collapseFive" class="collapse"
-											data-parent="#accordionExample">
-											<div class="card-body">
-												<ul>
-													<li><a href="#">Coats</a></li>
-													<li><a href="#">Jackets</a></li>
-													<li><a href="#">Dresses</a></li>
-													<li><a href="#">Shirts</a></li>
-													<li><a href="#">T-shirts</a></li>
-													<li><a href="#">Jeans</a></li>
-												</ul>
-											</div>
+							<div class="sidebar__sizes">
+								<div class="section-title">
+									<h4>정렬</h4>
+								</div>
+								<div class="size__list">
+									<label for="pDate"> 최신순 <input type="radio" id="pDate" name="sort" value="pDate" checked="checked">
+										<span class="checkmark"></span>
+									</label> <label for="pPrice"> 높은가격순 <input type="radio" id="pPrice" name="sort" value="pPrice">
+										<span class="checkmark"></span>
+									</label> <label for="pPriceLow"> 낮은가격순 <input type="radio" id="pPriceLow" name="sort" value="pPriceLow">
+										<span class="checkmark"></span>
+									</label>
+								</div>
+							</div>
+							<div class="sidebar__sizes">
+								<div class="section-title">
+									<h4>카테고리</h4>
+								</div>
+								<div class="size__list">
+									<label for="pCtgr1"> 장난감 <input type="radio" id="pCtgr1" name="pCtgr" value="장난감">
+										<span class="checkmark"></span>
+									</label> <label for="pCtgr2"> 옷 <input type="radio" id="pCtgr2" name="pCtgr" value="옷">
+										<span class="checkmark"></span>
+									</label> <label for="pCtgr3"> 사료 <input type="radio" id="pCtgr3" name="pCtgr" value="사료">
+										<span class="checkmark"></span>
+									</label> <label for="pCtgr4"> 식기 <input type="radio" id="pCtgr4" name="pCtgr" value="식기">
+										<span class="checkmark"></span>
+									</label>
+									<label for="pCtgr5"> 선택안함 <input type="radio" id="pCtgr5" name="pCtgr" value="none" checked="checked">
+										<span class="checkmark"></span>
+									</label> 
+								</div>
+							</div>
+							<div class="sidebar__filter">
+								<div class="section-title">
+									<h4>가격</h4>
+								</div>
+								<div class="filter-range-wrap">
+									<div
+										class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
+										data-min="0" data-max="99"></div>
+									<div class="range-slider">
+										<div class="price-input">
+											<p>최저가:</p>
+											<input type="text" id="minamount" name="lowPrice"> 만원
+											<hr>
+											<p>최고가:</p>
+											<input type="text" id="maxamount" name="highPrice"> 만원
 										</div>
 									</div>
 								</div>
+								<button type="submit" class="site-btn" >검색</button>
+								<c:if test="${!empty user}">
+									<button type="button" class="site-btn" onclick="location.href='productForm.jsp'">상품 등록</button>
+								</c:if>
 							</div>
 						</div>
-						<div class="sidebar__filter">
-							<div class="section-title">
-								<h4>Shop by price</h4>
-							</div>
-							<div class="filter-range-wrap">
-								<div
-									class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-									data-min="33" data-max="99"></div>
-								<div class="range-slider">
-									<div class="price-input">
-										<p>Price:</p>
-										<input type="text" id="minamount"> <input type="text"
-											id="maxamount">
-									</div>
-								</div>
-							</div>
-							<a href="#">Filter</a>
-						</div>
-						<div class="sidebar__sizes">
-							<div class="section-title">
-								<h4>Shop by size</h4>
-							</div>
-							<div class="size__list">
-								<label for="xxs"> xxs <input type="checkbox" id="xxs">
-									<span class="checkmark"></span>
-								</label> <label for="xs"> xs <input type="checkbox" id="xs">
-									<span class="checkmark"></span>
-								</label> <label for="xss"> xs-s <input type="checkbox" id="xss">
-									<span class="checkmark"></span>
-								</label> <label for="s"> s <input type="checkbox" id="s">
-									<span class="checkmark"></span>
-								</label> <label for="m"> m <input type="checkbox" id="m">
-									<span class="checkmark"></span>
-								</label> <label for="ml"> m-l <input type="checkbox" id="ml">
-									<span class="checkmark"></span>
-								</label> <label for="l"> l <input type="checkbox" id="l">
-									<span class="checkmark"></span>
-								</label> <label for="xl"> xl <input type="checkbox" id="xl">
-									<span class="checkmark"></span>
-								</label>
-							</div>
-						</div>
-						<div class="sidebar__color">
-							<div class="section-title">
-								<h4>Shop by size</h4>
-							</div>
-							<div class="size__list color__list">
-								<label for="black"> Blacks <input type="checkbox"
-									id="black"> <span class="checkmark"></span>
-								</label> <label for="whites"> Whites <input type="checkbox"
-									id="whites"> <span class="checkmark"></span>
-								</label> <label for="reds"> Reds <input type="checkbox"
-									id="reds"> <span class="checkmark"></span>
-								</label> <label for="greys"> Greys <input type="checkbox"
-									id="greys"> <span class="checkmark"></span>
-								</label> <label for="blues"> Blues <input type="checkbox"
-									id="blues"> <span class="checkmark"></span>
-								</label> <label for="beige"> Beige Tones <input type="checkbox"
-									id="beige"> <span class="checkmark"></span>
-								</label> <label for="greens"> Greens <input type="checkbox"
-									id="greens"> <span class="checkmark"></span>
-								</label> <label for="yellows"> Yellows <input type="checkbox"
-									id="yellows"> <span class="checkmark"></span>
-								</label>
-							</div>
-						</div>
-					</div>
+					</form>
 				</div>
 				<div class="col-lg-9 col-md-9">
 					<div class="row">
@@ -303,12 +195,11 @@
 							<div class="col-lg-4 col-md-6">
 								<div class="product__item">
 									<div class="product__item__pic set-bg"
-										data-setbg="img/${v.pImg1}">
+										style="background:url('${v.pImg1}')">
+										<img alt="" src="${v.pImg1}" class="Img">
 										<ul class="product__hover">
-											<li><a href="img/${v.pImg1}" class="image-popup"><span
+											<li><a href="${v.pImg1}" class="image-popup"><span
 													class="arrow_expand"></span></a></li>
-											<li><a href="#"><span class="icon_heart_alt"></span></a></li>
-											<li><a href="#"><span class="icon_bag_alt"></span></a></li>
 										</ul>
 									</div>
 									<div class="product__item__text">
@@ -323,12 +214,6 @@
 								</div>
 							</div>
 						</c:forEach>
-						<div class="col-lg-12 text-center">
-							<div class="pagination__option">
-								<a href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a
-									href="#"><i class="fa fa-angle-right"></i></a>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -336,122 +221,9 @@
 	</section>
 	<!-- Shop Section End -->
 
-	<!-- Instagram Begin -->
-	<div class="instagram">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-lg-2 col-md-4 col-sm-4 p-0">
-					<div class="instagram__item set-bg"
-						data-setbg="img/instagram/insta-1.jpg">
-						<div class="instagram__text">
-							<i class="fa fa-instagram"></i> <a href="#">@ ashion_shop</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-4 col-sm-4 p-0">
-					<div class="instagram__item set-bg"
-						data-setbg="img/instagram/insta-2.jpg">
-						<div class="instagram__text">
-							<i class="fa fa-instagram"></i> <a href="#">@ ashion_shop</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-4 col-sm-4 p-0">
-					<div class="instagram__item set-bg"
-						data-setbg="img/instagram/insta-3.jpg">
-						<div class="instagram__text">
-							<i class="fa fa-instagram"></i> <a href="#">@ ashion_shop</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-4 col-sm-4 p-0">
-					<div class="instagram__item set-bg"
-						data-setbg="img/instagram/insta-4.jpg">
-						<div class="instagram__text">
-							<i class="fa fa-instagram"></i> <a href="#">@ ashion_shop</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-4 col-sm-4 p-0">
-					<div class="instagram__item set-bg"
-						data-setbg="img/instagram/insta-5.jpg">
-						<div class="instagram__text">
-							<i class="fa fa-instagram"></i> <a href="#">@ ashion_shop</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-4 col-sm-4 p-0">
-					<div class="instagram__item set-bg"
-						data-setbg="img/instagram/insta-6.jpg">
-						<div class="instagram__text">
-							<i class="fa fa-instagram"></i> <a href="#">@ ashion_shop</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Instagram End -->
-
 	<!-- Footer Section Begin -->
 	<footer class="footer">
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-4 col-md-6 col-sm-7">
-					<div class="footer__about">
-						<div class="footer__logo">
-							<a href="index.jsp"><img src="img/logo.png" alt=""></a>
-						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-							sed do eiusmod tempor incididunt cilisis.</p>
-						<div class="footer__payment">
-							<a href="#"><img src="img/payment/payment-1.png" alt=""></a>
-							<a href="#"><img src="img/payment/payment-2.png" alt=""></a>
-							<a href="#"><img src="img/payment/payment-3.png" alt=""></a>
-							<a href="#"><img src="img/payment/payment-4.png" alt=""></a>
-							<a href="#"><img src="img/payment/payment-5.png" alt=""></a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-3 col-sm-5">
-					<div class="footer__widget">
-						<h6>Quick links</h6>
-						<ul>
-							<li><a href="#">About</a></li>
-							<li><a href="#">Blogs</a></li>
-							<li><a href="#">Contact</a></li>
-							<li><a href="#">FAQ</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-3 col-sm-4">
-					<div class="footer__widget">
-						<h6>Account</h6>
-						<ul>
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Orders Tracking</a></li>
-							<li><a href="#">Checkout</a></li>
-							<li><a href="#">Wishlist</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-8 col-sm-8">
-					<div class="footer__newslatter">
-						<h6>NEWSLETTER</h6>
-						<form action="#">
-							<input type="text" placeholder="Email">
-							<button type="submit" class="site-btn">Subscribe</button>
-						</form>
-						<div class="footer__social">
-							<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-								class="fa fa-twitter"></i></a> <a href="#"><i
-								class="fa fa-youtube-play"></i></a> <a href="#"><i
-								class="fa fa-instagram"></i></a> <a href="#"><i
-								class="fa fa-pinterest"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
 			<div class="row">
 				<div class="col-lg-12">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -470,17 +242,6 @@
 		</div>
 	</footer>
 	<!-- Footer Section End -->
-
-	<!-- Search Begin -->
-	<div class="search-model">
-		<div class="h-100 d-flex align-items-center justify-content-center">
-			<div class="search-close-switch">+</div>
-			<form class="search-model-form">
-				<input type="text" id="search-input" placeholder="Search here.....">
-			</form>
-		</div>
-	</div>
-	<!-- Search End -->
 
 	<!-- Js Plugins -->
 	<script src="js/jquery-3.3.1.min.js"></script>
