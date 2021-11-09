@@ -11,7 +11,7 @@
 <meta name="keywords" content="Ashion, unica, creative, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Ashion | Template</title>
+<title>몽글가게</title>
 
 <!-- Google Font -->
 <link
@@ -20,7 +20,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
 	rel="stylesheet">
-
+<link rel="shortcut icon" href="img/logo.ico">
 <!-- Css Styles -->
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
@@ -155,12 +155,14 @@
 								<input type="hidden" name="pName" value="${product.pName}" >
 								<input type="hidden" name="pImg1" value="${product.pImg1}" >
 								<input type="hidden" name="pPrice" value="${product.pPrice}" >
+								<c:if test="${!empty user}">
 								<div class="quantity">
 									<span>선택:</span>
 										<input type="number" class="pro-qty" name="hAmount" value="1" min="1" max="${product.pStock}">
 								</div>
 								<button type="submit" class="cart-btn"><span class="icon_bag_alt"></span>
 									장바구니에 담기</button>
+								</c:if>
 								<c:if test="${product.mId==user.mId}">
 								<a href="productForm.do?pNum=${product.pNum}" class="cart-btn">
 									상품 수정하기</a>

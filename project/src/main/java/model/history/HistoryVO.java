@@ -1,7 +1,6 @@
 package model.history;
 
 import java.sql.Date;
-import java.util.List;
 
 public class HistoryVO {
 	private int hNum;
@@ -17,7 +16,6 @@ public class HistoryVO {
 	private int pPrice;
 	private int hAmount;
 	private Date hDate;
-	private List<Integer> hAmontList; 
 	
 	public int gethNum() {
 		return hNum;
@@ -96,12 +94,6 @@ public class HistoryVO {
 	}
 	public void sethDate(Date hDate) {
 		this.hDate = hDate;
-	}
-	public List<Integer> gethAmontList() {
-		return hAmontList;
-	}
-	public void sethAmontList(List<Integer> hAmontList) {
-		this.hAmontList = hAmontList;
 	}
 	@Override
 	public String toString() {
